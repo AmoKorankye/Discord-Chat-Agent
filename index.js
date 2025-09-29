@@ -16,4 +16,13 @@ client.on(Events.ClientReady, readyClient => {
 //   }
 // });
 
+client.on(Events.MessageCreate, message => {
+  console.log(message.content);
+  if (message.author.bot) return;
+  if (!message.mentions.has(client.user)) return;
+  message.content = message.content.replace(/<@!?1421182513358835854>/, '').trim();
+
+  message.reply('Hello! How can I assist you today?');
+});
+
 client.login(process.env.DISCORD_TOKEN);
