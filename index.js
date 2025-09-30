@@ -13,13 +13,13 @@ client.on(Events.ClientReady, readyClient => {
 });
 
 // SLASH COMMANDS - explore later implementation
-client.on(Events.InteractionCreate, async interaction => {
-  if (!interaction.isChatInputCommand()) return;
-
-  if (interaction.commandName === 'ping') {
-    await interaction.reply('Pong!');
-  }
-});
+// client.on(Events.InteractionCreate, async interaction => {
+//   if (!interaction.isChatInputCommand()) return;
+//
+//   if (interaction.commandName === 'ping') {
+//     await interaction.reply('Pong!');
+//   }
+// });
 
 client.on(Events.MessageCreate, async message => {
   console.log(message.content);
