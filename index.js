@@ -10,16 +10,27 @@ const openai = new OpenAI({
 
 client.on(Events.ClientReady, readyClient => {
   console.log(`Logged in as ${readyClient.user.tag}!`);
+  console.log(`Bot is in ${readyClient.guilds.cache.size} servers`);
 });
 
-// SLASH COMMANDS - explore later implementation
-// client.on(Events.InteractionCreate, async interaction => {
-//   if (!interaction.isChatInputCommand()) return;
-//
-//   if (interaction.commandName === 'ping') {
-//     await interaction.reply('Pong!');
-//   }
-// });
+// SLASH COMMANDS - Now active with debugging!
+client.on(Events.InteractionCreate, async interaction => {
+  console.log('📥 Interaction received!');
+  
+  if (!interaction.isChatInputCommand()) {
+    console.log('❌ Not a chat input command');
+    return;
+  }
+
+  console.log(`✅ Slash command received: "${interaction.commandName}"`);
+
+  if (interaction.commandName === 'ping') {
+    console.log('🏓 Responding to ping command...');
+    await interaction.reply('Pong! 🏓');
+    console.log('✅ Reply sent!');
+    return;
+  }
+});
 
 client.on(Events.MessageCreate, async message => {
   console.log(message.content);
@@ -48,7 +59,7 @@ client.on(Events.MessageCreate, async message => {
     message.reply(response.choices[0].message.content);
   } catch (error) {
     console.error('OpenAI API Error:', error);
-    message.reply('Slight issue encountered. Please try again later.');
+    message.reply('🤖 My AI brain is temporarily offline due to quota limits. Try using slash commands like `/ping` instead!');
   }
 });
 
