@@ -6,6 +6,10 @@ const commands = [
     name: 'ping',
     description: 'Replies with Pong! 🏓',
   },
+  {
+    name: 'register',
+    description: 'Register with your personal information',
+  },
 ];
 
 const rest = new REST().setToken(process.env.DISCORD_TOKEN);
