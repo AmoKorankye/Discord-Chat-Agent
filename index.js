@@ -124,7 +124,7 @@ client.on(Events.MessageCreate, async message => {
     message.reply(response.choices[0].message.content);
   } catch (error) {
     console.error('OpenAI API Error:', error);
-    message.reply('🤖 My AI brain is temporarily offline due to quota limits. Try using slash commands like `/ping` instead!');
+    message.reply('🤖 My AI brain is temporarily offline due to quota. Try using slash commands like `/ping` instead!');
   }
 });
 
